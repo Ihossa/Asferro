@@ -2,8 +2,8 @@
   <div class="newtable" :id = tableTitle.id>
     <div class="table">
       <div class="head">
-        <button class="table-btn" @click = "edit">+</button>
-        <button class="table-btn" @click = "remove">-</button>
+        <button class="table-btn edit"  @click = "edit">+</button>
+        <button class="table-btn rem" @click = "remove">-</button>
       </div>
       <div class="context"  >
         <p>{{tableTitle.name}}</p>
@@ -49,6 +49,12 @@
   .table-btn{
     width: 2rem;
     margin: 0.2rem;
+  }
+  .edit:hover{
+      background: rgb(35, 35, 189);
+  }
+  .rem:hover{
+    background: rgb(233, 47, 34);
   }
   .context{
     background: lightgray;

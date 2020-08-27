@@ -5,11 +5,21 @@
         <label>Name</label>
         <input type="text" name="name" maxlength="60" v-model="name" required>
         <label>Gender</label>
-        <input type="text" name="gender"  v-model="gender" required>
+        <div class="rad">
+          <input class="radio" name="gender" type="radio" value="Male" v-model="gender">
+          <label for="gender">Male</label>
+          <input class="radio2" name="gender" type="radio" value="Female" v-model="gender">
+          <label for="gender">Female</label> 
+        </div>
         <label>Email</label>
         <input type="email" name="email" v-model="email" required>
         <label>Status</label>
-        <input type="text" name="status" v-model="status" required>                      
+        <div class="rad">
+          <input class="radio" name="status" type="radio" value="Active" v-model="status">
+          <label for="gender">Active</label>
+          <input class="radio2" name="status" type="radio" value="Inactive" v-model="status">
+          <label for="gender">Inactive</label>
+        </div>                     
         <button>Save</button>
         <button @click = "close">X</button>
       </form>
@@ -30,16 +40,16 @@ import { mapActions } from 'vuex'
       return{
         id:this.editInf.id?this.editInf.id: Date.now(),
         name:this.editInf.name?this.editInf.name:"",
-        gender:this.editInf.gender?this.editInf.gender:"",
+        gender:this.editInf.gender?this.editInf.gender:"Male",
         email:this.editInf.email?this.editInf.email:"",
-        status:this.editInf.status?this.editInf.status:"",
+        status:this.editInf.status?this.editInf.status:"Active",
         seen: true,
       }
     },
 
     methods: {
       newTable(){
-        
+        console.log(this.gender);
         const infTable = {
           id:this.id,
           name: this.name,
@@ -106,6 +116,17 @@ import { mapActions } from 'vuex'
     padding-left: 0.3rem;
     border-radius: 3rem;
     margin-bottom: 1.5rem;
+  }
+  .popup .rad{
+    margin-bottom: 5px;
+    border: 1px solid white;
+  }
+  .popup .radio, .radio2{
+    position: absolute;
+    transform: translateY(7px);
+  }
+  .radio2{
+    transform: translateY(2px);
   }
   .popup button{
     display: inline-block;
