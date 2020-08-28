@@ -64,13 +64,23 @@ import { mapActions } from 'vuex'
         this.gender = "";
         this.email = "";
         this.status = "";
-        this.editInf.id?this.UPDATE_PEOPLE_FROM_API(infTable):this.ADD_PEOPLE_FROM_API(infTable);
+        if(this.editInf.id){
+          this.UPDATE_PEOPLE_FROM_API(infTable);
+          this.GET_PEOPLE_FROM_API();
+        } else{
+          this.ADD_PEOPLE_FROM_API(infTable);
+          this.GET_PEOPLE_FROM_API();
+        }
+
+        this.seen = false;
+        this.$emit('closePop', this.seen);
       },
       close(){
         this.seen = false;
         this.$emit('closePop', this.seen);
       },
       ...mapActions([
+        'GET_PEOPLE_FROM_API',
         'ADD_PEOPLE_FROM_API',
         'UPDATE_PEOPLE_FROM_API',
       ]),
@@ -86,7 +96,6 @@ import { mapActions } from 'vuex'
     width: 100%;
   }
   .popup-other{
-
     display: inline-block;
     position: absolute;
     height: inherit;
@@ -99,8 +108,8 @@ import { mapActions } from 'vuex'
     display: inline-block;
     opacity: 1;
     position: fixed;
-    height: auto;
-    padding: 3rem;
+    height: inherit;
+    padding: 30px;
     background: gray;
     z-index: 2;
   }

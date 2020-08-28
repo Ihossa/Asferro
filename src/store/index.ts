@@ -16,7 +16,6 @@ export default new Vuex.Store({
     }
   },
   actions: {
-
     GET_PEOPLE_FROM_API({commit}){
       return axios.get("https://gorest.co.in/public-api/users")
       .then((people) => {
@@ -36,8 +35,6 @@ export default new Vuex.Store({
         `https://gorest.co.in/public-api/users/${id}`,
           config
       ).then((people) => {
-        commit("SET_PEOPLE_TO_STATE", people)
-        location.reload();
         return people;
       }).catch((error) => {
         console.log(error)
@@ -57,7 +54,6 @@ export default new Vuex.Store({
        config
      ).then((people) => {
        console.log(people)
-      // location.reload();
      }).catch((error) => {
        console.log(error)
      });
@@ -75,9 +71,7 @@ export default new Vuex.Store({
         bodyParameters,
         config
       ).then((people) => {
-        commit("SET_PEOPLE_TO_STATE")
-        location.reload()
-        
+        return people;
       }).catch((error) => {
         console.log(error)
       });

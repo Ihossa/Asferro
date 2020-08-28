@@ -1,6 +1,6 @@
 <template>
   <div class="mainTitle">
-    <div id = "header" class="head">
+    <div class="head" id="hed">
       <div class="email">Asferro</div>
     </div>
 
@@ -54,6 +54,7 @@
       popNew(){
         this.editInf = {};
         this.visPop = true;
+        window.stopPropagation();
       },
       edit(table){
         //this.GET_ONE_PEOPLE_FROM_API(table.id);
@@ -63,6 +64,7 @@
       },
       remove(id){
        this.DELETE_PEOPLE_FROM_API(id);
+       this.GET_PEOPLE_FROM_API();
       },
       closePop(seen){
         this.visPop = seen;
@@ -84,15 +86,16 @@
     margin: 0;
     padding: 0;
   }
-  #heder{
-    position: fixed;
-    overflow: hidden;
-  }
   .head{
     display: flex;
     align-items:center;
     background:lightgray;
     justify-content: space-around;
+  }
+  #hed{
+    width: 100%;
+    display: block;
+    position: absolute;
   }
   .head .email{
     margin: 1rem;
@@ -114,14 +117,11 @@
     right: 2rem;
 
   }
-
+  .container{
+    padding-top:20px;
+  }
   #pop:hover{
     background: gray;
-  }
-  .container{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  
   }
 
 </style>
